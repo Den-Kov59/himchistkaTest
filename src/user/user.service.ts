@@ -4,22 +4,22 @@ import debug from 'debug';
 class UserService {
     async findUserByEmail(email: string) {
         return User.findOne({
-            email: email,
+            email,
         }).exec();
     }
 
     async createUser(user: IUser) {
         const newUser = new User(user)
-        return newUser.save(function (err) {
+        return newUser.save((err) => {
             if (err) return debug.log(err);
         }
         )
     }
 
     async deleteUserByUsername(username: string) {
-        const user = User.findOneAndRemove({ username: username }).then((user) => {
-            if (!user) {
-                debug.log("user not found");
+        const user = User.findOneAndRemove({ username }).then((users) => {
+            if (!users) {
+                debug.log("users not found");
             } else {
                 debug.log(username + " was deleted");
             }

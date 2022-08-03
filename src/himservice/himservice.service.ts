@@ -7,16 +7,16 @@ class HimserviceService {
     }
     async createHimservice(name: string, cost: number) {
         const newHimservice = new Himservice({ name, cost })
-        return newHimservice.save(function (err) {
+        return newHimservice.save((err) => {
             if (err) return debug.log(err)
         })
     }
     async removeHimservice(name: string) {
-        const himservice = Himservice.findOneAndRemove({ name }).then((himservice) => {
-            if (!himservice) {
+        const himservice = Himservice.findOneAndRemove({ name }).then((himservices) => {
+            if (!himservices) {
                 debug.log("himservice not found");
             } else {
-                return himservice;
+                return himservices;
             }
         })
     }
