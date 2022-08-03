@@ -11,6 +11,6 @@ const HimserviceSchema = new Schema<IHimservice>({
     cost: { type: Number, required: true },
 })
 
-const Himservice = MongooseService.getInstance().model<IHimservice>('Himservise', HimserviceSchema)
+const Himservice = MongooseService.getInstance().model<IHimservice>('Himservice', HimserviceSchema)
 
 export default Himservice
