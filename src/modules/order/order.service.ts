@@ -11,25 +11,25 @@ class OrderService {
         const himservices = himservicesId.map(himId => new mongoose.Types.ObjectId(himId))
         const himchistka = new mongoose.Types.ObjectId(himchistkaId)
         const newOrder = new Order({ user, himservices, himchistka })
-        return newOrder.save(function (err) {
+        return newOrder.save((err) => {
             if (err) return debug.log(err)
         })
     }
     async removeOrder(id: string) {
-        const order = Order.findByIdAndRemove(id).then((order) => {
-            if (!order) {
+        const order = Order.findByIdAndRemove(id).then((orders) => {
+            if (!orders) {
                 debug.log("order not found");
             } else {
-                return order;
+                return orders;
             }
         })
     }
     async updateOrder(id: string, status: string) {
-        const order = Order.updateOne({ _id: id }, { status }).then((order) => {
-            if (!order) {
+        const order = Order.updateOne({ _id: id }, { status }).then((orders) => {
+            if (!orders) {
                 debug.log("order not found");
             } else {
-                return order;
+                return orders;
             }
         })
 

@@ -1,14 +1,15 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import { RouteConfig } from './abstracts/route.config'
-import { UserRoutes } from './user/user.route.config'
-import { IUser } from "./User/user.interface";
-import { AuthRoutes } from "./auth/auth.route.config"
+import { UserRoutes } from './modules/user/user.route.config'
+import { IUser } from "./modules/User/user.interface";
+import { AuthRoutes } from "./modules/auth/auth.route.config"
 import { IDebugger } from 'debug';
-import { HimchistkaRoutes } from "./himchistka/himchistka.route.config"
+import { HimchistkaRoutes } from "./modules/himchistka/himchistka.route.config"
 import debug from 'debug';
 import cors from 'cors'
-import { HimserviceRoutes } from "./himservice/himservice.route.config"
+import { HimserviceRoutes } from "./modules/himservice/himservice.route.config"
+import { OrderRoutes } from "./modules/order/order.route.config"
 
 dotenv.config()
 
@@ -34,6 +35,7 @@ routes.push(new UserRoutes(app))
 routes.push(new AuthRoutes(app))
 routes.push(new HimchistkaRoutes(app))
 routes.push(new HimserviceRoutes(app))
+routes.push(new OrderRoutes(app))
 
 app.get('/', (req: Request, res: Response) => {
     res.send("Express+ Typescript server is running")

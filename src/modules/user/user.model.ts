@@ -1,9 +1,9 @@
-import MongooseService from "../services/mongoose.service"
+import MongooseService from "../../services/mongoose.service"
 import { model, Schema, Model, Document } from "mongoose"
 import { scrypt, randomBytes } from "crypto"
 import { promisify } from "util"
 import { IUser } from "./user.interface"
-import { Password } from "../services/password.service"
+import { Password } from "../../services/password.service"
 const scryptAsync = promisify(scrypt)
 export interface UserDocument extends Document {
     email: string

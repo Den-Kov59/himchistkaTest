@@ -2,6 +2,9 @@ import User from "../User/user.model";
 import { IUser } from "../User/user.interface";
 import debug from 'debug';
 class UserService {
+    async getAllUsers() {
+        return User.find({})
+    }
     async findUserByEmail(email: string) {
         return User.findOne({
             email,

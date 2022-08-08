@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from "express"
 import AuthService from "./auth.service"
 import jwt from "jsonwebtoken"
 import debug, { IDebugger } from "debug"
-import { Password } from "../services/password.service"
+import { Password } from "../../services/password.service"
 const jwtSecret: string = process.env.JWT_SECRET || "123456"
-const tokenExpirationInSeconds = 36000
+const tokenExpirationInSeconds = 36000000
 const log: IDebugger = debug("auth:controller")
 class AuthController {
     async login(req: Request, res: Response, next: NextFunction) {

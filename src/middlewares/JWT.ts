@@ -7,7 +7,8 @@ const log: IDebugger = debug("middleware:JWT");
 
 class JWT {
     authenticateJWT(req: Request, res: Response, next: NextFunction) {
-        const authHeader = req.headers.authorization;
+        // Bearer token
+        const authHeader = req.headers.authorization.split(' ')[1];
         if (authHeader && authHeader !== "null") {
             // const token = authHeader.split(" ")[1];
             log("auth Header", JWT_KEY);

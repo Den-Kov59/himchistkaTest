@@ -45,7 +45,10 @@ class OrderController {
             const orderId = req.body.orderId
             const status = req.body.status
             const order = await OrderService.updateOrder(orderId, status)
-            return order
+            return res.status(200).json({
+                success: true,
+                order,
+            })
         } catch (e) {
             next(e)
         }

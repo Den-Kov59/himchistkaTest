@@ -1,4 +1,4 @@
-import MongooseService from "../services/mongoose.service"
+import MongooseService from "../../services/mongoose.service"
 import { model, Schema, Model, Document } from "mongoose"
 
 interface IHimservice {

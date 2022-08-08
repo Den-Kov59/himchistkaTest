@@ -4,17 +4,16 @@ class UserController {
     //    constructor() {}
 
     async getUsers(req: any, res: Response, next: NextFunction) {
-        return res.status(200).json({
-            success: true,
-            data: [
-                {
-                    name: "John",
-                },
-                {
-                    name: "Steve",
-                },
-            ],
-        })
+        try {
+            const users = await UserService.getAllUsers()
+            return res.status(200).json({
+                success: true,
+                data: users
+            })
+        } catch (e) {
+            next(e)
+        }
+
     }
     async getUser(req: Request, res: Response, next: NextFunction) {
         const email = req.user.email;
