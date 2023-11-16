@@ -51,6 +51,7 @@ class AuthController {
                         username,
                         email,
                         password,
+                        balance: 0
                     })
                     const token = jwt.sign({ username, password }, jwtSecret, {
                         expiresIn: tokenExpirationInSeconds,
@@ -63,6 +64,33 @@ class AuthController {
                 } catch (e) {
                     log("Controller capturing error", e)
                     throw new Error("Error while register")
+                }
+            }
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    async changePassword(req: Request, res: Response, next: NextFunction) {
+        try {
+            const email = req.body.email
+            const password = req.body.password
+            const user = await AuthService.findUserByEmail(email)
+            log("user", user)
+            if (!user) {
+                throw new Error("User Not Exists")
+            } else {
+                try {
+                    const newUser = await AuthService.changePassword({
+                        user,
+                        password
+                    })
+                    return res.status(200).json({
+                        success: true,
+                        data: newUser,
+                    })
+                } catch (e) {
+                    throw new Error("Error while changing password")
                 }
             }
         } catch (e) {

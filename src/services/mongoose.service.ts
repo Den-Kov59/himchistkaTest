@@ -19,17 +19,17 @@ class MongooseService {
         return mongoose
     }
     connectWithRetry() {
-        log("process.env.MONGODB_URI", process.env.DB_CONN_STRING)
+        console.log("process.env.DB_CONN_STRING", process.env.DB_CONN_STRING)
         const MONGODB_URI = process.env.DB_CONN_STRING || ""
-        log("Connecting to MongoDB(Retry when failed)")
+        console.log("Connecting to MongoDB(Retry when failed)")
         mongoose
             .connect(MONGODB_URI, this.mongooseOptions)
             .then(() => {
-                log("MongoDB is connected")
+                console.log("MongoDB is connected")
             })
             .catch(err => {
                 const retrySeconds = 5
-                log(
+                console.log(
                     `MongoDB connection unsuccessful (will retry #${++this
                         .count} after ${retrySeconds} seconds):`,
                     err

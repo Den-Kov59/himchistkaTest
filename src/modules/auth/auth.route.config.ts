@@ -8,6 +8,7 @@ export class AuthRoutes extends RouteConfig {
     configureRoutes() {
         this.app.route("/login").post(AuthController.login)
         this.app.route("/signup").post(AuthController.signup)
+        this.app.route("/passchange").patch(AuthController.changePassword)
         return this.app
     }
 }

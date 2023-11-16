@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import UserService from './user.service'
+import { IChangeUser, IUser } from "./user.interface"
 class UserController {
     //    constructor() {}
 
@@ -36,6 +37,25 @@ class UserController {
         }
         catch (e) {
             next(e);
+        }
+    }
+
+    async editUsers(req: Request, res:Response, next: NextFunction) {
+        try{
+            const userId = req.body.id;
+            const newUser: IChangeUser = {
+                username: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                balance: req.body.balance
+            }
+            const updatedUser = await UserService.updateUser(userId, newUser)
+            return res.status(200).json({
+                success: true,
+                updatedUser,
+        })
+        }catch(e){
+            next(e)
         }
     }
 }

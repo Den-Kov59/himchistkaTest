@@ -1,6 +1,7 @@
-import User from "../User/user.model";
-import { IUser } from "../User/user.interface";
+import User from "./user.model";
+import { IChangeUser, IUser } from "./user.interface";
 import debug from 'debug';
+import { mutateUpdate } from "../../services/update.service"
 class UserService {
     async getAllUsers() {
         return User.find({})
@@ -25,6 +26,17 @@ class UserService {
                 debug.log("users not found");
             } else {
                 debug.log(username + " was deleted");
+            }
+        })
+    }
+
+    async updateUser(id: string, userChanges: IChangeUser) {
+        const user = mutateUpdate(userChanges)
+        const newUser = User.updateOne({_id: id},  {$set: user }).then((users)=>{
+            if (!users) {
+                debug.log("users not found");
+            } else {
+                return users;
             }
         })
     }

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import HimserviceService from "./himservice.service";
+import IHimservice from './himservice.interface'
 
 class HimserviceController {
     async getAll(req: Request, res: Response, next: NextFunction) {
@@ -36,6 +37,22 @@ class HimserviceController {
             const himserviceTRM = await HimserviceService.removeHimservice(name)
             return himserviceTRM
         } catch (e) {
+            next(e)
+        }
+    }
+
+    async updateHimservice(req: Request, res: Response, next: NextFunction){
+        try{
+            const himservieId = req.body.id;
+            const newHimservice: IHimservice = {
+                cost: req.body.cost,
+            }
+            const updatedHimservice = await HimserviceService.editHimservice(himservieId, newHimservice)
+            return res.status(200).json({
+                success: true,
+                updatedHimservice,
+        })
+        }catch(e){
             next(e)
         }
     }

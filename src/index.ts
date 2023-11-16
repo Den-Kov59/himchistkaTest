@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import { RouteConfig } from './abstracts/route.config'
 import { UserRoutes } from './modules/user/user.route.config'
-import { IUser } from "./modules/User/user.interface";
+import { IUser } from "./modules/user/user.interface";
 import { AuthRoutes } from "./modules/auth/auth.route.config"
 import { IDebugger } from 'debug';
 import { HimchistkaRoutes } from "./modules/himchistka/himchistka.route.config"

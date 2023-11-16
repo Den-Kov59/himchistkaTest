@@ -10,7 +10,8 @@ class OrderService {
         const user = new mongoose.Types.ObjectId(userId)
         const himservices = himservicesId.map(himId => new mongoose.Types.ObjectId(himId))
         const himchistka = new mongoose.Types.ObjectId(himchistkaId)
-        const newOrder = new Order({ user, himservices, himchistka })
+        const date = new Date()
+        const newOrder = new Order({ user, himservices, himchistka, dateAdded: date })
         return newOrder.save((err) => {
             if (err) return debug.log(err)
         })

@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express"
 import HimchistkaService from "./himchistka.service";
+import IHimchistka from "./himchistka.interface";
+import IChangeHimchistka from "./himchistka.interface";
 
 class HimchistkaController {
     async getAll(req: Request, res: Response, next: NextFunction) {
@@ -36,6 +38,27 @@ class HimchistkaController {
             const himchistkaTRM = await HimchistkaService.removeHimchistka(name)
             return himchistkaTRM
         } catch (e) {
+            next(e)
+        }
+    }
+
+    async updateHimchistka(req: Request, res: Response, next: NextFunction) {
+        try
+        {
+            const himchistkaId = req.body.id;
+            const newHimchistka: IChangeHimchistka = {
+                name: req.body.name,
+                address: req.body.address,
+                description: req.body.description,
+                himservices: req.body.himservices,
+                images: req.body.images
+            }
+            const updatedHimchistka = await HimchistkaService.updateHimchistka(himchistkaId, newHimchistka)
+            return res.status(200).json({
+                success: true,
+                updatedHimchistka,
+        })
+        }catch(e){
             next(e)
         }
     }

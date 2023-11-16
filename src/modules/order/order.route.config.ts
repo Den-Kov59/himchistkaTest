@@ -5,6 +5,7 @@ export class OrderRoutes extends RouteConfig {
     constructor(app: Application) {
         super(app, "OrderRoutes")
     }
+    // TODO change paths and controllers of get/delete/edit to include orderID in it
     configureRoutes(): Application {
         this.app.route("/order/all").get(OrderController.getAll)
         this.app.route("/order/new").post(OrderController.createOrder)
