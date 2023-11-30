@@ -6,6 +6,11 @@ class OrderService {
     async getAll() {
         return Order.find({}).populate(['user', 'himservices', 'himchistka'])
     }
+
+    async getById(id: string){
+        return Order.findById(id)
+    }
+
     async createOrder(userId: string, himservicesId: string[], himchistkaId: string) {
         const user = new mongoose.Types.ObjectId(userId)
         const himservices = himservicesId.map(himId => new mongoose.Types.ObjectId(himId))

@@ -11,6 +11,7 @@ export class HimchistkaRoutes extends RouteConfig {
         this.app.route("/himchistka/new").post(himchistkaController.createHimchistka)
         this.app.route("/himchistka/delete").delete(himchistkaController.removeHimchistka)
         this.app.route("/himchistka/patch").patch(himchistkaController.updateHimchistka)
+        this.app.route("/himchistka/:id").get(himchistkaController.getHimchistkaById)
         return this.app
     }
 }

@@ -16,6 +16,25 @@ class HimserviceController {
         }
     }
 
+    async getServiceById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const himservice = await HimserviceService.getById(id)
+            if(himservice) {
+                return res.status(200).json({
+                    success: true,
+                    data: himservice
+                })
+            } else {
+                return res.status(200).json({
+                    success: false
+                })
+            }
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async createHimservice(req: Request, res: Response, next: NextFunction) {
 
         try {

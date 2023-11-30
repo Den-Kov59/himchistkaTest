@@ -6,6 +6,11 @@ class HimserviceService {
     async getAll() {
         return Himservice.find({})
     }
+
+    async getById(id: string) {
+        return Himservice.findById(id)
+    }
+
     async createHimservice(name: string, cost: number) {
         const newHimservice = new Himservice({ name, cost })
         return newHimservice.save((err) => {

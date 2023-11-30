@@ -8,6 +8,11 @@ class HimchistkaService {
     async getAll() {
         return Himchistka.find({})
     }
+
+    async getById(id: string){
+        return Himchistka.findById(id)
+    }
+
     async createHimchistka(name: string, address: string) {
         const newHimchistka = new Himchistka({ name, address })
         return newHimchistka.save((err) => {

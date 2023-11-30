@@ -11,6 +11,7 @@ export class HimserviceRoutes extends RouteConfig {
         this.app.route("/himservices/new").post(HimserviceController.createHimservice)
         this.app.route("/himservices/delete").delete(HimserviceController.removeHimservice)
         this.app.route("/himservice/edit").patch(HimserviceController.updateHimservice)
+        this.app.route("/himsevices/:id").get(HimserviceController.getServiceById)
         return this.app
     }
 }

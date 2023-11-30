@@ -30,6 +30,25 @@ class UserController {
         }
     }
 
+    async getUserById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const user = await UserService.getUserById(id)
+            if(user) {
+                return res.status(200).json({
+                    success: true,
+                    data: user
+                })
+            } else {
+                return res.status(200).json({
+                    success: false
+                })
+            }
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async deleteUser(req: Request, res: Response, next: NextFunction) {
         const username = req.user.username;
         try {

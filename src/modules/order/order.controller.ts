@@ -15,6 +15,25 @@ class OrderController {
         }
     }
 
+    async getOrderById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const order = await OrderService.getById(id)
+            if(order) {
+                return res.status(200).json({
+                    success: true,
+                    data: order
+                })
+            } else {
+                return res.status(200).json({
+                    success: false
+                })
+            }
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async createOrder(req: Request, res: Response, next: NextFunction) {
 
         try {

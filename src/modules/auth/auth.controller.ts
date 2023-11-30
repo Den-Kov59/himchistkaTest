@@ -30,7 +30,10 @@ class AuthController {
                 }
             } else {
                 log("User Not Found")
-                throw new Error("User Not Found")
+                return res.status(200).json({
+                    success: false,
+                    message: 'CredentialsSignin: User Not Found'
+                })
             }
         } catch (e) {
             next(e)

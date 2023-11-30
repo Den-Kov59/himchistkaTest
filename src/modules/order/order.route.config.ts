@@ -11,6 +11,7 @@ export class OrderRoutes extends RouteConfig {
         this.app.route("/order/new").post(OrderController.createOrder)
         this.app.route("/order/delete").delete(OrderController.removeOrder)
         this.app.route("/order/update").patch(OrderController.updateOrder)
+        this.app.route("/order/:id").get(OrderController.getOrderById)
         return this.app
     }
 }

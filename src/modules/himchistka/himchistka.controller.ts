@@ -17,6 +17,25 @@ class HimchistkaController {
         }
     }
 
+    async getHimchistkaById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const id = req.params.id;
+            const himchistka = await HimchistkaService.getById(id)
+            if(himchistka) {
+                return res.status(200).json({
+                    success: true,
+                    data: himchistka
+                })
+            } else {
+                return res.status(200).json({
+                    success: false
+                })
+            }
+        } catch (e) {
+            next(e)
+        }
+    }
+
     async createHimchistka(req: Request, res: Response, next: NextFunction) {
 
         try {

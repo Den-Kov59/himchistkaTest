@@ -12,6 +12,10 @@ class UserService {
         }).exec();
     }
 
+    async getUserById(id: string) {
+        return User.findById(id)
+    }
+
     async createUser(user: IUser) {
         const newUser = new User(user)
         return newUser.save((err) => {
