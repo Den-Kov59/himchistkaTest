@@ -43,7 +43,7 @@ class HimserviceController {
             const newHimservice = await HimserviceService.createHimservice(name, cost)
             return res.status(200).json({
                 success: true,
-                date: newHimservice,
+                data: newHimservice,
             })
         } catch (e) {
             next(e)
